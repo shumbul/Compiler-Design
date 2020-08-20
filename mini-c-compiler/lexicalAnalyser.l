@@ -1,3 +1,7 @@
+/*Implemenatation of Lexical Analyser for C Language*/
+/*Program identifies tokens to be returned by the scanner*/
+/*Also stores the values in Symbol Table*/
+/*Program also identifies errors in C file*/
 %{
 int lineno = 1;
 #include<stdio.h>
