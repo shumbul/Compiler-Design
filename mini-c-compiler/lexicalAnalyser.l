@@ -2,6 +2,7 @@
 /*Program identifies tokens to be returned by the scanner*/
 /*Also stores the values in Symbol Table*/
 /*Program also identifies errors in C file*/
+
 %{
 int lineno = 1;
 #include<stdio.h>
@@ -236,7 +237,7 @@ int hashIndex(char *token)
 	return hi;
 }
 
-void insertToHash(char *token, char *attr)
+void hashInsert(char *token, char *attr)
 {
 	int flag=0;
 	int hi;
@@ -312,18 +313,18 @@ int main()
 		if(lineno!=dqline && dqline!=0)
 		{
 			if(dq%2!=0)
-				printf("\n******** ERROR!! INCOMPLETE STRING at Line %d ********\n\n", dqline);
+				printf("\n<<<<<<<<<< ERROR! >>>>>>>>>> \n<<<<<<<<<<INCOMPLETE STRING at Line %d >>>>>>>>>>\n\n", dqline);
 			dq=0;
 		}
 		if((scan>=1 && scan<=32) && mlc==0)
 		{
 			printf("%s\t\t\tKEYWORD\t\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "KEYWORD");
+			hashInsert(yytext, "KEYWORD");
 		}
 		if(scan==33 && mlc==0)
 		{
 			printf("%s\t\t\tIDENTIFIER\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "IDENTIFIER");
+			hashInsert(yytext, "IDENTIFIER");
 		}
 		if(scan==34)
 		{
@@ -338,7 +339,7 @@ int main()
 		}
 		if(scan==36 && mlc==0)
 		{
-			printf("\n******** ERROR!! UNMATCHED MULTILINE COMMENT END %s at Line %d ********\n\n", yytext, lineno);
+			printf("\n<<<<<<<<<< ERROR! >>>>>>>>>> \n<<<<<<<<<<UNMATCHED MULTILINE COMMENT END %s at Line %d >>>>>>>>>>\n\n", yytext, lineno);
 		}
 		if(scan==36 && mlc==1)
 		{
@@ -348,7 +349,7 @@ int main()
 		if((scan>=37 && scan<=52) && mlc==0)
 		{
 			printf("%s\t\t\tOPERATOR\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "OPERATOR");
+			hashInsert(yytext, "OPERATOR");
 		}
 		if((scan==53||scan==54||scan==63||(scan>=64 && scan<=68)) && mlc==0)
 		{
@@ -358,7 +359,7 @@ int main()
 				dq++;
 				dqline = lineno;
 			}
-			insertToHash(yytext, "SPECIAL SYMBOL");
+			hashInsert(yytext, "SPECIAL SYMBOL");
 		}
 		if(scan==55 && mlc==0)
 		{
@@ -367,12 +368,12 @@ int main()
 		if(scan==56 && mlc==0)
 		{
 			printf("%s\t\t\tMAIN FUNCTION\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "IDENTIFIER");
+			hashInsert(yytext, "IDENTIFIER");
 		}
 		if((scan==57 || scan==58) && mlc==0)
 		{
 			printf("%s\t\t\tPRE DEFINED FUNCTION\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "PRE DEFINED FUNCTION");
+			hashInsert(yytext, "PRE DEFINED FUNCTION");
 		}
 		if(scan==59 && mlc==0)
 		{
@@ -381,12 +382,12 @@ int main()
 		if(scan==60 && mlc==0)
 		{
 			printf("%s\t\t\tINTEGER CONSTANT\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "INTEGER CONSTANT");
+			hashInsert(yytext, "INTEGER CONSTANT");
 		}
 		if(scan==61 && mlc==0)
 		{
 			printf("%s\t\t\tFLOATING POINT CONSTANT\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "FLOATING POINT CONSTANT");
+			hashInsert(yytext, "FLOATING POINT CONSTANT");
 		}
 		if(scan==62 && mlc==0)
 		{
@@ -395,42 +396,42 @@ int main()
 		if(scan==69 && mlc==0)
 		{
 			printf("%s\t\t\tARRAY\t\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "ARRAY");
+			hashInsert(yytext, "ARRAY");
 		}
 		if(scan==70 && mlc==0)
 		{
 			printf("%s\t\t\tUSER DEFINED FUNCTION\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "USER DEFINED FUNCTION");
+			hashInsert(yytext, "USER DEFINED FUNCTION");
 		}
 		if(scan==71 && mlc==0)
 		{
-			printf("\n******** ERROR!! CONSTANT ERROR %s at Line %d ********\n\n", yytext, lineno);
+			printf("\n<<<<<<<<<< ERROR! >>>>>>>>>> \n<<<<<<<<<<CONSTANT ERROR %s at Line %d >>>>>>>>>>\n\n", yytext, lineno);
 		}
 		if(scan==72 && mlc==0)
 		{
-			printf("\n******** ERROR!! UNKNOWN TOKEN %s at Line %d ********\n\n", yytext, lineno);
+			printf("\n<<<<<<<<<< ERROR! >>>>>>>>>> \n<<<<<<<<<<UNKNOWN TOKEN %s at Line %d >>>>>>>>>>\n\n", yytext, lineno);
 		}
 		if(scan==73 && mlc==0)
 		{
 			printf("%s\t\t\tCHARACTER CONSTANT\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "CHARACTER CONSTANT");
+			hashInsert(yytext, "CHARACTER CONSTANT");
 		}
 		if(scan==74 && mlc==0)
 		{
 			printf("%s\t\t\tSIGNED CONSTANT\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "SIGNED CONSTANT");
+			hashInsert(yytext, "SIGNED CONSTANT");
 		}
 		if(scan==75 && mlc==0)
 		{
 			printf("%s\t\t\tSTRING CONSTANT\t\t\tLine %d\n", yytext, lineno);
-			insertToHash(yytext, "STRING CONSTANT");
+			hashInsert(yytext, "STRING CONSTANT");
 		}
 		scan = yylex();
 	}
 	if(mlc==1)
-		printf("\n******** ERROR!! UNMATCHED COMMENT STARTING at Line %d ********\n\n",mlcline);
+		printf("\n<<<<<<<<<< ERROR! >>>>>>>>>> \n<<<<<<<<<<UNMATCHED COMMENT STARTING at Line %d >>>>>>>>>>\n\n",mlcline);
 	printf("\n");
-	printf("\n\t******** SYMBOL TABLE ********\t\t\n");
+	printf("\n\t############## SYMBOL TABLE ##############\t\t\n");
 	display();
         printf("-------------------------------------------------------------------\n\n");
 }
