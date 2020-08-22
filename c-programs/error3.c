@@ -1,7 +1,6 @@
 /*error in floating point number*/
 // C program for the above approach 
-#include <math.h> 
-#include <stdio.h> 
+
   
 // Function to find the square-root of N 
 double findSQRT(double N) 
