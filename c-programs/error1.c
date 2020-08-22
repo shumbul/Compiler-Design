@@ -1,4 +1,4 @@
-#include<stdio.h>
+
 int main()
 {
     char A[]="#define min 11";
