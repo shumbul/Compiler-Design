@@ -180,6 +180,13 @@ scanf return SCANF;
 
 "#include<stdio.h>" return HEADER;
 "#include <stdio.h>" return HEADER;
+"#include <math.h>" return HEADER;
+"#include<math.h>" return HEADER;
+"#include <stdlib.h>" return HEADER;
+"#include<stdlib.h>" return HEADER;
+"#include <string.h>" return HEADER;
+"#include<strng.h>" return HEADER;
+
 "main()" return MAIN;
 
 {digit}+ return INT_CONST;
