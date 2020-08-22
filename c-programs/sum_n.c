@@ -1,4 +1,4 @@
-#include<stdio.h>
+
 int sum_n (int n) {
     int result = 0;
 
