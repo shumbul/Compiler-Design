@@ -1,7 +1,7 @@
 /*
  * C Program to find GCD of given Numbers using Recursion
  */
-#include <stdio.h>
+
  
 int gcd(int, int);
  
