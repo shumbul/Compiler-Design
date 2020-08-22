@@ -3,7 +3,7 @@
  * Do a linear search for a given key and report success
  * or failure.
  */
-#include <stdio.h>
+
  
 void main()
 {  int num;
