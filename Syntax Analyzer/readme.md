@@ -1,4 +1,4 @@
-Syntax Analysis
+# PARSER/SYNTACTIC ANALYSIS
 
 Workflow:
 1.	Compile the script using Yacc tool. \
